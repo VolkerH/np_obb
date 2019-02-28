@@ -25,5 +25,7 @@ See the examples in [the Jupyter notebook in the `example` folder](./example/Ori
 ## Limitations
 
 This implementation uses the approach of finding the dominant orientation of the object using the covariance or eigenvectors.
-This works extremely well for elongated objects such as the ones in the sample image but may not be optimal for more symmetric objects. An optimal algorithm should search for the smallest (in area or volume) oriented box that fits the whole object. Such an optimization does not necessarily have a unique solution, just think of the degenrate case of a perfectly symmetric object such as a circle.
-Also see the discussion in [this stackoverflow post](https://stackoverflow.com/questions/6189229/creating-oobb-from-points).
+This works extremely well for elongated objects such as the ones in the sample image but may not be optimal for more symmetric objects. 
+An optimal algorithm should search for the smallest (in area or volume) oriented box that fits the whole object. Such an optimization does not necessarily have a unique solution, as exemplified by the degenrate case of a perfectly symmetric object such as a circle.
+
+[This issue](https://github.com/VolkerH/np_obb/issues/3) gives links to algorithms for calulcating optimal and approximatations of optimal bounding boxes and existing implementations for 2D and 3D in Matlab and C++. Note that these are anything but trivial. I am not aware of any python implementations.
