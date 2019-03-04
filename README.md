@@ -19,6 +19,7 @@ pip install git+https://github.com/VolkerH/np_obb.git
 ```
 
 ## Usage
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/VolkerH/np_obb/master?filepath=example%2F)
 
 See the examples in [the Jupyter notebook in the `example` folder](./example/Oriented%20Bounding%20Boxes%20Examples.ipynb).
 
