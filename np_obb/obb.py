@@ -68,17 +68,18 @@ def get_obb_from_labelim(label_im, labels=None):
     return results
 
 def get_obb_from_mask(mask_im):
-    """ given a binary mask, calculate the oriented 
-    bounding box of the foreground object. This is done
-    by calculating the outline of the object, transform
-    the pixel coordinates of the outline into a list of
+    """Oriented bounding box of object in binary mask image.
+    
+    This is done by finding the convex hull, then transforming 
+    the pixel coordinates from the image into a list of
     points and then calling :func: `get_obb_from_points`
-
+    
+    Poor performance is expected if there are multiple objects
+    in the mask image.
+    
     Parameters:
         mask_im: binary numpy array
-
     """
-    eroded = skimage.morphology.erosion(mask_im)
-    outline = mask_im ^ eroded
-    boundary_points = np.argwhere(outline > 0)
-    return get_obb_from_points(boundary_points)
+    convex_hull = skimage.morphology.convex_hull_object(mask_im)
+    points = np.argwhere(convex_hull > 0)
+    return np_obb.get_obb_from_points(points)
