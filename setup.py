@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='np_obb',
-      version='0.1',
+      version='0.1.1',
       description='oriented bounding boxes in np',
       url='https://github.com/VolkerH/np_obb',
       author='Volker Hilsenstein',
