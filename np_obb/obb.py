@@ -7,22 +7,28 @@
 
 import numpy as np
 import skimage.morphology
+from scipy.spatial import ConvexHull
 
-def get_obb_from_points(points):
+
+def get_obb_from_points(points, calcconvexhull=True):
     """ given a set of points, calculate the oriented bounding 
     box. 
     
     Parameters:
     points: numpy array of point coordinates with shape (n,2)
             where n is the number of points
-
+    calcconvexhull: boolean, calculate the convex hull of the 
+            points before calculating the bounding box. You typically
+            want to do that unless you know you are passing in a convex
+            point set
     Output:
         tuple of corners, centre
     """
-    # TODO: this could probably also be made to work 
-    # in 3D with minimal changes
 
-    
+    if calcconvexhull:
+        _ch = ConvexHull(points)
+        points = _ch.points[_ch.vertices]
+
     cov_points = np.cov(points,y = None,rowvar = 0,bias = 1)
     v, vect = np.linalg.eig(cov_points)
     tvect = np.transpose(vect)
